@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+use crate::exchange::Cloid;
 
 #[derive(Serialize, Deserialize, Clone)]
 pub struct ClientCancelRequest {
@@ -16,11 +17,11 @@ pub struct CancelRequest {
 #[derive(Serialize, Deserialize, Clone)]
 pub struct ClientCancelByCloidRequest {
     pub asset: String,
-    pub cloid: u64,
+    pub cloid: Cloid,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct CancelByCloidRequest {
     pub asset: u32,
-    pub cloid: u64,
+    pub cloid: Cloid,
 }

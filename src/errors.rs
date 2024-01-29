@@ -53,4 +53,8 @@ pub enum Error {
     PrivateKeyParse(String),
     #[error("Cannot subscribe to multiple user events")]
     UserEvents,
+    #[error("Cloid must be a hex string of 16 bytes")]
+    CloidHexString,
+    #[error("Cloid must be a hex string of 16 bytes")]
+    CloidInvalidCharacters,
 }

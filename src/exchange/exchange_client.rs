@@ -250,11 +250,12 @@ impl ExchangeClient {
                 .coin_to_asset
                 .get(&cancel.asset)
                 .ok_or(Error::AssetNotFound)?;
+            let raw_cloid = cancel.cloid.to_raw().to_string();
             transformed_cancels.push(CancelByCloidRequest {
                 asset,
                 cloid: cancel.cloid,
             });
-            hashable_tuples.push((asset, cancel.cloid));
+            hashable_tuples.push((asset, raw_cloid));
         }
 
         let connection_id = keccak((hashable_tuples, vault_address, timestamp));

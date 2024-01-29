@@ -26,6 +26,30 @@ pub enum Order {
     Trigger(Trigger),
 }
 
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+pub struct Cloid(String);
+
+impl Cloid {
+    pub fn new(raw_cloid: &str) -> Result<Self> {
+        if !raw_cloid.starts_with("0x") || raw_cloid.len() != 34 {
+            return Err(Error::CloidHexString);
+        }
+        if !raw_cloid[2..].chars().all(|c| c.is_digit(16)) {
+            return Err(Error::CloidInvalidCharacters);
+        }
+        Ok(Cloid(raw_cloid.to_uppercase()))
+    }
+
+    pub fn from_int(cloid: u128) -> Self {
+        let hex_str = format!("0x{:032x}", cloid);
+        Cloid(hex_str)
+    }
+
+    pub fn to_raw(&self) -> &str {
+        &self.0
+    }
+}
+
 #[derive(Deserialize, Serialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct OrderRequest {
