@@ -55,6 +55,6 @@ pub enum Error {
     UserEvents,
     #[error("Cloid must be a hex string of 16 bytes")]
     CloidHexString,
-    #[error("Cloid must be a hex string of 16 bytes")]
+    #[error("Cloid must only contain hexadecimal characters (0-9, a-f, A-F).")]
     CloidInvalidCharacters,
 }
