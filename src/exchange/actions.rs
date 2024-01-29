@@ -1,5 +1,5 @@
 use crate::{
-    exchange::{cancel::CancelRequest, order::OrderRequest},
+    exchange::{cancel::{CancelRequest, CancelByCloidRequest}, order::OrderRequest},
     signature::agent::mainnet::Agent,
 };
 use ethers::types::H160;
@@ -39,6 +39,14 @@ pub struct BulkOrder {
 pub struct BulkCancel {
     pub cancels: Vec<CancelRequest>,
 }
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct BulkCancelByCloid {
+    pub cancels: Vec<CancelByCloidRequest>,
+}
+
+
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
